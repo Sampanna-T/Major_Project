@@ -1,9 +1,9 @@
 # Major project
 
-## Vedio
+## Vedio folder
 contains vedio link of car_control project
 
-## Simulation
+## Simulation folder
 contains vedio link of the simulations
 
 ## inc folder 

@@ -25,8 +25,8 @@ SoftwareSerial bluetooth_serial(0,0);
  * @param tx 
  */
 Bluetooth::Bluetooth(uint8_t rx, uint8_t tx){
-   bluetooth_serial=SoftwareSerial(rx,tx);//initializing the pins for SoftwareSerial
-   bluetooth_serial.begin(9600);//setting up the default baud rate for bluetooth communication
+   bluetooth_serial=SoftwareSerial(rx,tx);	//initializing the pins for SoftwareSerial
+   bluetooth_serial.begin(9600);		//setting up the default baud rate for bluetooth communication
 }
 
 
@@ -76,7 +76,7 @@ void Bluetooth::start(Car car){
     //whenever there is data to be read by the bluetooth module this while loop will be executed
     while(bluetooth_serial.available()){//while(bluetooth.available()
        
-        byte ascii_value = bluetooth_serial.read();//read the data if received any
+        byte ascii_value = bluetooth_serial.read();	//read the data if received any
         
         if(is_number(ascii_value)){//check if received data is number
 
@@ -86,28 +86,28 @@ void Bluetooth::start(Car car){
         else if(is_character(ascii_value)){//check if received data is a character
             
             if(char(ascii_value)=='u'){
-                car.move_forward();//car moves forward
+                car.move_forward();			//car moves forward
             }
             else if(char(ascii_value)=='d'){
-                car.move_backward();//car moves backward
+                car.move_backward();			//car moves backward
             }
             else if(char(ascii_value)=='l'){
-                car.move_left();//car moves left
+                car.move_left();			//car moves left
             }
             else if(char(ascii_value)=='r'){
-                car.move_right();//car moves right
+                car.move_right();			//car moves right
             }
             else if(char(ascii_value)=='s'){
-                car.stop_now();//car stops
+                car.stop_now();				//car stops
             }
             else{
-                Serial.println("Unknown Character!!!");//for testing purpose only
+                Serial.println("Unknown Character!!!");	//for testing purpose only
             }  
 
         }
         else{
             
-            Serial.println("Unknown Character!!");//for testing purpose only
+            Serial.println("Unknown Character!!");	//for testing purpose only
             
         }
             

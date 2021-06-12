@@ -30,8 +30,8 @@ TinyGPSPlus tiny_gps;
 *
 */
 GPS::GPS(uint8_t rx, uint8_t tx){
-    GPS_serial = SoftwareSerial(rx,tx);//initializing the pins for SoftwareSerial
-    GPS_serial.begin(9600);//setting up the default baud rate for GPS communication
+    GPS_serial = SoftwareSerial(rx,tx);		//initializing the pins for SoftwareSerial
+    GPS_serial.begin(9600);			//setting up the default baud rate for GPS communication
 }
 
 /**
@@ -42,11 +42,11 @@ void GPS::update(){
 
     while(GPS_serial.available()){//while(available())
   
-        tiny_gps.encode(GPS_serial.read());//encodes the value and holds it in gps object
+        tiny_gps.encode(GPS_serial.read());		//encodes the value and holds it in gps object
 
         if(tiny_gps.location.isUpdated()){//if
-            latitude = tiny_gps.location.lat();
-            longitude = tiny_gps.location.lng();	
+            latitude = tiny_gps.location.lat();		//updating latitude value	
+            longitude = tiny_gps.location.lng();	//updating longitude value
 	}//if
 
     }//while(available())
@@ -61,11 +61,11 @@ void GPS::update_h(){
 
     while(Serial.available()){//while(available())
   
-        tiny_gps.encode(Serial.read());//encodes the value and holds it in gps object
+        tiny_gps.encode(Serial.read());			//encodes the value and holds it in gps object
 
         if(tiny_gps.location.isUpdated()){//if
-            latitude = tiny_gps.location.lat();
-            longitude = tiny_gps.location.lng();	
+            latitude = tiny_gps.location.lat();		//updating latitude value
+            longitude = tiny_gps.location.lng();	//updating longitude value
 	}//if
 
     }//while(available())
@@ -106,7 +106,7 @@ void GPS::print(LiquidCrystal_I2C lcd, uint8_t row, uint8_t col){
         d += latitude;
 	d += " ";
 	d += longitude;
-        lcd.setCursor(col,row);//initialize the position from where the printing is done
+        lcd.setCursor(col,row);		//initialize the position from where the printing is done
         lcd.print(d);
 }
 

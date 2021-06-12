@@ -44,15 +44,15 @@ Car::Car(uint8_t motor_rightCTRL1, uint8_t motor_rightCTRL2, uint8_t motor_leftC
  */
 void Car::initialize(){
 /*initializing all the motor control pins along with the pwm pin*/
-	motor_rightCTRL1 = 12;//configuring rightCTRL1 pin(connected to pin7 of L293d)
-	motor_rightCTRL2 = 11;//configuring rightCTRL2 pin(connected to pin2 of L293d)
-	motor_leftCTRL1 = 13;//configuring leftCTRL1 pin(connected to pin10 of L293d)
-	motor_leftCTRL2 = A0;//configuring leftCTRL2 pin(connected to pin15 of L293d)
+	motor_rightCTRL1 = 12;		//configuring rightCTRL1 pin(connected to pin7 of L293d)
+	motor_rightCTRL2 = 11;		//configuring rightCTRL2 pin(connected to pin2 of L293d)
+	motor_leftCTRL1 = 13;		//configuring leftCTRL1 pin(connected to pin10 of L293d)
+	motor_leftCTRL2 = A0;		//configuring leftCTRL2 pin(connected to pin15 of L293d)
 	
 	pwm = 3;//pin to control the speed of the motors
 
 /*initialize the pwm pin as output and setting speed to 0*/	
-	//pinMode(pwm,OUTPUT);setting PWM pin as output
+//pinMode(pwm,OUTPUT);setting PWM pin as output
       	speed = 0;
 
 /*initializing all the control pins as OUTPUT*/
@@ -68,19 +68,19 @@ void Car::initialize(){
  */
 void Car::initialize(uint8_t motor_rightCTRL1,uint8_t motor_rightCTRL2,uint8_t motor_leftCTRL1,uint8_t motor_leftCTRL2,uint8_t pwm){
 /*initializing all the motor control pins along with the pwm pin*/
-	this->motor_rightCTRL1 = motor_rightCTRL1;//configuring rightCTRL pin1(connected to pin7 of L293d)
-	this->motor_rightCTRL2 = motor_rightCTRL2;//configuring rightCTRL pin2(connected to pin2 of L293d)
-	this->motor_leftCTRL1 = motor_leftCTRL1;//configuring leftCTRL pin1(connected to pin10 of L293d)
-	this->motor_leftCTRL2 = motor_leftCTRL2;//configuring leftCTRL pin2(connected to pin15 of L293d)
+	this->motor_rightCTRL1 = motor_rightCTRL1;		//configuring rightCTRL pin1(connected to pin7 of L293d)
+	this->motor_rightCTRL2 = motor_rightCTRL2;		//configuring rightCTRL pin2(connected to pin2 of L293d)
+	this->motor_leftCTRL1 = motor_leftCTRL1;		//configuring leftCTRL pin1(connected to pin10 of L293d)
+	this->motor_leftCTRL2 = motor_leftCTRL2;		//configuring leftCTRL pin2(connected to pin15 of L293d)
 	
         if(pwm!=3 || pwm!=5 || pwm!=6 || pwm!=9 || pwm!=10 || pwm!=11)
-	this->pwm = 3;//deafault initialization of pwm pin if any pin other than 3,5,6,9,10,11 is chosen
+	this->pwm = 3;		//deafault initialization of pwm pin if any pin other than 3,5,6,9,10,11 is chosen
         else
-        this->pwm = pwm;//set user given pwm pin as pwm pin
+        this->pwm = pwm;	//set user given pwm pin as pwm pin
 
 /*initialize the pwm pin as output and setting speed to 0*/	
-	pinMode(pwm,OUTPUT);//setting PWM pin as output
-      	speed = 0;//initializing the speed to 0
+	pinMode(pwm,OUTPUT);	//setting PWM pin as output
+      	speed = 0;		//initializing the speed to 0
 
 /*initializing all the control pins as OUTPUT*/
         pinMode(motor_rightCTRL1,OUTPUT);
@@ -162,8 +162,8 @@ void Car::stop_now(){
  * @param speed 
  */
 void Car::set_speed(int speed){
-    this->speed = speed*255/9;//mapping the values of speed from 0-9 to 0-255
-    analogWrite(pwm,this->speed);//outputting the speed to pwm pin
+    this->speed = speed*255/9;		//mapping the values of speed from 0-9 to 0-255
+    analogWrite(pwm,this->speed);	//outputting the speed to pwm pin
 }
 
 

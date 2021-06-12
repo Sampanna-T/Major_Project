@@ -48,9 +48,9 @@ float Ultrasonic::get_distance(){
     delayMicroseconds(10);
     digitalWrite(trigger,LOW);
 
-    float time = pulseIn(echo,HIGH);//checks for how long the echo pin is HIGH
+    float time = pulseIn(echo,HIGH);	//checks for how long the echo pin is HIGH
 
-    distance = (time/2.0)*0.0343;//calculates the distance between the obstacle and the sensor
+    distance = (time/2.0)*0.0343;	//calculates the distance between the obstacle and the sensor
 
 
     return distance;
@@ -67,9 +67,9 @@ float Ultrasonic::get_distance(){
 */
 void Ultrasonic::print(LiquidCrystal_I2C lcd, uint8_t row, uint8_t col){
    
-        String d = "";//creating a string so that it can be passed in lcd.print function
+        String d = "";		//creating a string so that it can be passed in lcd.print function
         d += distance;
-        lcd.setCursor(col,row);//initialize the position from where the printing is done
+        lcd.setCursor(col,row);	//initialize the position from where the printing is done
         lcd.print(d);
 
 }

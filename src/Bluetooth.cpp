@@ -1,5 +1,5 @@
 /**
- * @file Bluetooth.c
+ * @file Bluetooth.cpp
  * 
  * @author Sampanna T (kashi16sadan@gmail.com)
  * 

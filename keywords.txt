@@ -1,0 +1,27 @@
+Car	KEYWORD1
+Bluetooth	KEYWORD1
+GPS	KEYWORD1
+Ultrasonic	KEYWORD1
+
+#methods of car
+initialize		KEYWORD2
+moveForward		KEYWORD2
+moveBackward		KEYWORD2
+moveLeft		KEYWORD2
+moveRight		KEYWORD2
+setSpeed		KEYWORD2
+
+#methods of bluetooth
+start			KEYWORD2
+
+#functions of Ultrasonic
+get_distance		KEYWORD2
+print			KEYWORD2
+set_buzzer		KEYWORD2
+
+#methods of GPS
+update			KEYWORD2
+update_h		KEYWORD2
+get_latitude		KEYWORD2
+get_longitude		KEYWORD2
+print			KEYWORD2

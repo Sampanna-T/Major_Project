@@ -22,6 +22,7 @@
 #include "WProgram.h"
 #endif
 
+
 #include <LiquidCrystal_I2C.h>
 #include <Wire.h>
 
@@ -29,7 +30,7 @@ class Ultrasonic{
 
     private:
         /**
-         * @brief holds distance between an obstance and the transmitter of ultrasonic sensor
+         * @brief holds distance between an obstancle and the transmitter of ultrasonic sensor
          * 
          */
         float distance;
@@ -59,6 +60,8 @@ class Ultrasonic{
          * 
          * @param echo 
          * @param trigger 
+	 * @param buzzer
+	 *
          */
         Ultrasonic(uint8_t echo, uint8_t trigger, uint8_t buzzer);
 
@@ -66,8 +69,29 @@ class Ultrasonic{
          * @brief returns value in the distance variable
          * 
          * @return float 
+	 *
          */
-        float get_distance(LiquidCrystal_I2C lcd);
+        float get_distance();
+
+
+        /**
+         * @brief prints the distance value in the lcd at given row,column
+         * 
+	 * @param lcd
+         * @param row
+	 * @param col
+	 *
+         */
+	void print(LiquidCrystal_I2C lcd, uint8_t row, uint8_t col);
+
+	/**
+	* @brief buzzer turns off if state = 0 and turns on otherwise
+	*        
+	* @param state
+	* 
+	*/
+	void Ultrasonic::set_buzzer(uint8_t state);
+	
 };
 
 #endif

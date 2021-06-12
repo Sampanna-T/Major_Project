@@ -15,8 +15,6 @@
 
 #include "Ultrasonic.h"
 
-unsigned long end_time=0;//holds millis value for lcd to clear
-unsigned long buzzer_time=0;//holds time for buzzer to turn off
 
 /**
  * @brief Construct a new Ultrasonic:: Ultrasonic object
@@ -29,48 +27,65 @@ Ultrasonic::Ultrasonic(uint8_t echo, uint8_t trigger, uint8_t buzzer){
     this->echo = echo;
     this->trigger = trigger;
     this->buzzer = buzzer;
+
     pinMode(echo, INPUT);
     pinMode(trigger, OUTPUT);
     pinMode(buzzer, OUTPUT);
     digitalWrite(trigger, LOW);
-    end_time=millis()+200;
+
 }
 
 /**
  * @brief returns distance between sensor and detected object
  * 
- * @param lcd 
+ * 
  * @return float 
  */
-float Ultrasonic::get_distance(LiquidCrystal_I2C lcd){
+float Ultrasonic::get_distance(){
     /*generating a pulse of duration 10 micro seconds*/
+
     digitalWrite(trigger,HIGH);
     delayMicroseconds(10);
     digitalWrite(trigger,LOW);
 
     float time = pulseIn(echo,HIGH);//checks for how long the echo pin is HIGH
 
-    distance = (time/2)*0.0343;//calculates the distance between the obstacle and the sensor
+    distance = (time/2.0)*0.0343;//calculates the distance between the obstacle and the sensor
 
-    if(distance>=2 && distance<=10){
-        String d = "";
-        d +=distance;
-        
-        if(millis()>=end_time){//update the lcd only after 200ms
-             lcd.clear();
-             lcd.setCursor(0,0);
-             lcd.print("Distance = "+d);
-             digitalWrite(buzzer,HIGH);
-             buzzer_time=millis()+500;
-             end_time = millis()+200;
-        }
-    }
-    else{
-        if(millis()>=buzzer_time){//turf off the buzzer only after 500ms once obstactle is identified
-        digitalWrite(buzzer,LOW);
-        lcd.clear();
-        }
-    }
 
     return distance;
+}
+
+
+/**
+* @brief prints the distance value in the lcd at given row,column
+* 
+* @param lcd
+* @param row 
+* @param col
+* 
+*/
+void Ultrasonic::print(LiquidCrystal_I2C lcd, uint8_t row, uint8_t col){
+   
+        String d = "";//creating a string so that it can be passed in lcd.print function
+        d += distance;
+        lcd.setCursor(col,row);//initialize the position from where the printing is done
+        lcd.print(d);
+
+}
+
+
+/**
+* @brief buzzer turns off if state = 0 and turns on otherwise
+*         
+* @param state
+*
+*/
+void Ultrasonic::set_buzzer(uint8_t state){
+     if(state==LOW){
+     	digitalWrite(buzzer,LOW);
+     }
+     else{
+     	digitalWrite(buzzer,HIGH);
+     }
 }

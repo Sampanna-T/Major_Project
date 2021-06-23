@@ -13,6 +13,6 @@ contains all the header files that needs to be implemented
 contins implementations of the header files
 
 ## main file
-Major_project.ino includes all the header files and hence performs all the task necessary for the the porject to function.
+ArduinoNano.ino & ESP8266.ino includes all the header files and hence performs all the task necessary for the the porject to function.
 
 

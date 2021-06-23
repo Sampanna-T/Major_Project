@@ -31,6 +31,7 @@ Ultrasonic::Ultrasonic(uint8_t echo, uint8_t trigger, uint8_t buzzer){
     pinMode(echo, INPUT);
     pinMode(trigger, OUTPUT);
     pinMode(buzzer, OUTPUT);
+
     digitalWrite(trigger, LOW);
 
 }
@@ -50,7 +51,7 @@ float Ultrasonic::get_distance(){
 
     float time = pulseIn(echo,HIGH);	//checks for how long the echo pin is HIGH
 
-    distance = (time/2.0)*0.0343;	//calculates the distance between the obstacle and the sensor
+    distance = (time/58.309);		//calculates the distance between the obstacle and the sensor
 
 
     return distance;

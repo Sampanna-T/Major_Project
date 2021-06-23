@@ -24,7 +24,7 @@
 
 #include <LiquidCrystal_I2C.h>
 #include <Wire.h>
-#include <SoftwareSerial.h>
+#include <NeoSWSerial.h>
 #include <TinyGPS++.h>
 
 class GPS{
@@ -43,17 +43,25 @@ class GPS{
          */
         float longitude;
 
+	/**
+	 *
+	 * @brief holds the address of NeoSWSerial object
+	 *
+	 */
+	NeoSWSerial *gpsSerialPtr;
+
 
     
     public:
-        /**
-         * @brief Construct a new GPS object and
-         *        configure the tx and rx pins
-         * 
-         * @param rx
-         * @param tx
-         */
-        GPS(uint8_t rx, uint8_t tx);
+	/**
+	* @brief Construct a new GPS object and
+	*        start serial communication at default baut rate using NeoSWSerial object address
+	* 
+	* @param gpsSerialPtr
+	* @param baudrate
+	*
+	*/
+        GPS(NeoSWSerial *gpsSerialPtr, int baudrate);
 
         /**
          * @brief updates latitude and longitude values
@@ -61,12 +69,6 @@ class GPS{
          */
         void update();
 
-
-	/**
-	 * @brief updates latitude and longitude values from hardware serial
-	 * 
-	 */
-	void GPS::update_h();
 
         /**
          * @brief returns latitude value

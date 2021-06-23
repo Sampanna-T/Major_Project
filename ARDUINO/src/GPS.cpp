@@ -15,23 +15,21 @@
 
 #include "GPS.h"
 
-/*Declaring SoftwareSerial object*/
-SoftwareSerial GPS_serial(0,0);
 
 /*Declaring TinyGPSPlus object*/
 TinyGPSPlus tiny_gps;
 
 /**
 * @brief Construct a new GPS object and
-*        configure the tx and rx pins
+*        start serial communication at default baut rate using NeoSWSerial object address
 * 
-* @param rx
-* @param tx
+* @param gpsSerialPtr
+* @param baudrate
 *
 */
-GPS::GPS(uint8_t rx, uint8_t tx){
-    GPS_serial = SoftwareSerial(rx,tx);		//initializing the pins for SoftwareSerial
-    GPS_serial.begin(9600);			//setting up the default baud rate for GPS communication
+GPS::GPS(NeoSWSerial *gpsSerialPtr, int baudrate){
+    this->gpsSerialPtr = gpsSerialPtr;		//initializing the gpsSerialPtr with the address provided
+    this->gpsSerialPtr->begin(baudrate);	//setting up the default baud rate for GPS communication
 }
 
 /**
@@ -40,9 +38,9 @@ GPS::GPS(uint8_t rx, uint8_t tx){
 */
 void GPS::update(){
 
-    while(GPS_serial.available()){//while(available())
+    while(gpsSerialPtr->available()){//while(available())
   
-        tiny_gps.encode(GPS_serial.read());		//encodes the value and holds it in gps object
+        tiny_gps.encode(gpsSerialPtr->read());		//encodes the value and holds it in gps object
 
         if(tiny_gps.location.isUpdated()){//if
             latitude = tiny_gps.location.lat();		//updating latitude value	
@@ -53,24 +51,6 @@ void GPS::update(){
 
 }
 
-/**
-* @brief updates latitude and longitude values from hardware serial
-* 
-*/
-void GPS::update_h(){
-
-    while(Serial.available()){//while(available())
-  
-        tiny_gps.encode(Serial.read());			//encodes the value and holds it in gps object
-
-        if(tiny_gps.location.isUpdated()){//if
-            latitude = tiny_gps.location.lat();		//updating latitude value
-            longitude = tiny_gps.location.lng();	//updating longitude value
-	}//if
-
-    }//while(available())
-
-}
 
 /**
 * @brief returns latitude value

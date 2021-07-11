@@ -44,13 +44,16 @@ void setup() {
   lcd.begin(16,2);              //initializing the lcd
   lcd_update = millis();        //initializing lcd_update variable
   pinMode(ACCIDENT_PIN,INPUT);  //initializing ACCIDENT_PIN as input
+  pinMode(2,INPUT_PULLUP);
+  car.move_forward();
+  car.set_speed(7);
 }
 
 void loop() { 
   
   gps.update();              //updating the gps location values and reading it from gps_rx pin
   //bluetooth.start(&car);     //performing operations on the car when received u,d,l,r,s data
-  bluetooth.start_h(&car);     //performing operations on the car when received u,d,l,r,s data
+  //bluetooth.start_h(&car);     //performing operations on the car when received u,d,l,r,s data
  
   distance = u_sensor.get_distance();    //getting value from ultrasonic sensor and storing it in distance variable
 
@@ -82,5 +85,9 @@ void loop() {
 
   latitude = gps.get_latitude();         //updating the latitude value in the latitude variable
   longitude = gps.get_longitude();       //updating the longitude value in the longitude variable
+
+ 
+ 
+    
  
 }

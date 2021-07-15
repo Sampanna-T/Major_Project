@@ -45,8 +45,6 @@ void setup() {
   lcd_update = millis();        //initializing lcd_update variable
   pinMode(ACCIDENT_PIN,INPUT);  //initializing ACCIDENT_PIN as input
   pinMode(2,INPUT_PULLUP);
-  car.move_forward();
-  car.set_speed(7);
 }
 
 void loop() { 

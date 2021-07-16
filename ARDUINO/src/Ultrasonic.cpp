@@ -52,7 +52,10 @@ float Ultrasonic::get_distance(){
     float time = pulseIn(echo,HIGH);	//checks for how long the echo pin is HIGH
 
     distance = (time/58.309);		//calculates the distance between the obstacle and the sensor
-
+    /*
+	2*distance = velocity*time 
+	=> distance = {34300 * time * (10^-6) }/2 = time / 58.309
+    */
 
     return distance;
 }

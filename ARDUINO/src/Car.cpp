@@ -49,7 +49,7 @@ void Car::initialize(){
 	motor_leftCTRL1 = 13;		//configuring leftCTRL1 pin(connected to pin10 of L293d)
 	motor_leftCTRL2 = A0;		//configuring leftCTRL2 pin(connected to pin15 of L293d)
 	
-	pwm = 3;//pin to control the speed of the motors
+	pwm = 3;			//pin to control the speed of the motors
 
 /*initialize the pwm pin as output and setting speed to 0*/	
 //pinMode(pwm,OUTPUT);setting PWM pin as output
@@ -164,6 +164,7 @@ void Car::stop_now(){
 void Car::set_speed(int speed){
     this->speed = speed*255/9;		//mapping the values of speed from 0-9 to 0-255
     analogWrite(pwm,this->speed);	//outputting the speed to pwm pin
+/* The frequecy for pwm is 976.56Hz for pins 4,13 whereas 490.20 for other pins(even in our case)*/
 }
 
 

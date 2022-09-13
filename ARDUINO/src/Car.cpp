@@ -74,7 +74,7 @@ void Car::initialize(uint8_t motor_rightCTRL1,uint8_t motor_rightCTRL2,uint8_t m
 	this->motor_leftCTRL2 = motor_leftCTRL2;		//configuring leftCTRL pin2(connected to pin15 of L293d)
 	
         if(pwm!=3 || pwm!=5 || pwm!=6 || pwm!=9 || pwm!=10 || pwm!=11)
-	this->pwm = 3;		//deafault initialization of pwm pin if any pin other than 3,5,6,9,10,11 is chosen
+	this->pwm = pwm;		//deafault initialization of pwm pin if any pin other than 3,5,6,9,10,11 is chosen
         else
         this->pwm = pwm;	//set user given pwm pin as pwm pin
 
